@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Tracks</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+
+  <ion-card *ngFor="let track of tracks">
+    <ion-item>
+      <ion-avatar item-left>
+        <img src="{{track.icon}}">
+      </ion-avatar>
+      <h2>Samoyed</h2>
+      <p>{{track.time}}</p>
+    </ion-item>
+
+    <img src="{{track.img}}">
+
+    <ion-card-content>
+      <p>{{track.text}}</p>
+    </ion-card-content>
+
+    <ion-row>
+      <ion-col>
+        <button ion-button icon-left clear small>
+          <ion-icon name="pin"></ion-icon>
+          <div>{{track.location}}</div>
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-card>
+
+
+</ion-content>

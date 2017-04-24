@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>E-Motion</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <img src="imgs/map.jpg" width="100%" height="100%">
+  <ion-fab center middle>
+    <ion-icon name="pin" color="primary"></ion-icon>
+  </ion-fab>
+
+  <ion-fab right bottom>
+    <button ion-fab color="primary"><ion-icon name="arrow-dropup"></ion-icon></button>
+    <ion-fab-list side="top">
+      <button ion-fab><ion-icon name="add" (click)="openPostPage()" color="primary"></ion-icon></button>
+      <button ion-fab><ion-icon name="people" color="primary"></ion-icon></button>
+    </ion-fab-list>
+  </ion-fab>
+</ion-content>

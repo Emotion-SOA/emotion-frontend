@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Post</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+
+  <ion-card>
+
+    <ion-item>
+      <ion-avatar item-left>
+        <img src="imgs/img0.jpeg">
+      </ion-avatar>
+      <h2>Samoyed</h2>
+      <p>April 25, 2017</p>
+    </ion-item>
+
+    <ion-item>
+      <img src="imgs/post0.jpg" height="100%" width="100%">
+      <ion-fab right bottom>
+        <button ion-fab color="primary"><ion-icon name="add"></ion-icon></button>
+      </ion-fab>
+    </ion-item>
+
+    <ion-card-content>
+      <ion-input></ion-input>
+    </ion-card-content>
+
+    <ion-row>
+      <ion-col>
+        <button ion-button icon-left clear small>
+          <ion-icon name="pin"></ion-icon>
+          <div>Zhang Jiang</div>
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-card>
+
+  <ion-item>
+    <button ion-button item-right round color="primary" (click)="post()">Post</button>
+  </ion-item>
+
+</ion-content>
