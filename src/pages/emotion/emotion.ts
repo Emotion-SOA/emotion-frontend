@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {NlpService} from '../../app/services/nlp.service'
+import {VisionService} from '../../app/services/vision.service'
 
 @Component({
   selector: 'page-emotion',
@@ -9,18 +10,18 @@ import {NlpService} from '../../app/services/nlp.service'
 export class EmotionPage {
   items: any;
 
-  constructor(private nlpService: NlpService) {
+  constructor(private visionService: VisionService, private nlpService: NlpService) {
   }
 
   //run everytime the page renders
   ngOnInit() {
-    this.nlpService.test();
   }
 
-  getPosts() {
-    this.nlpService.getPosts().subscribe(response => {
-      console.log(response);
-      this.items = response.data.children;
-    })
-  }
+  //not used
+  // getPosts() {
+  //   this.nlpService.getPosts().subscribe(response => {
+  //     console.log(response);
+  //     this.items = response.data.children;
+  //   })
+  // }
 }
