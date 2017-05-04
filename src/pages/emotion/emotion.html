@@ -1,9 +1,9 @@
-<ion-header>
+<ion-header color="primary">
   <ion-navbar>
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>E-Motion</ion-title>
+    <ion-title color="primary">E-Motion</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -15,10 +15,12 @@
   </ion-fab>
 
   <ion-fab right bottom>
-    <button ion-fab color="primary"><ion-icon name="arrow-dropup"></ion-icon></button>
-    <ion-fab-list side="top">
-      <button ion-fab><ion-icon name="add" (click)="openPostPage()" color="primary"></ion-icon></button>
-      <button ion-fab><ion-icon name="people" color="primary"></ion-icon></button>
+    <button ion-fab color="primary"><ion-icon name="arrow-dropleft"></ion-icon></button>
+    <ion-fab-list side="left">
+      <button ion-fab (click)="addPost()"><ion-icon name="paw" color="primary"></ion-icon></button>
+      <button ion-fab (click)="extractKeyword()"><ion-icon name="contract" color="primary"></ion-icon></button>
+      <button ion-fab (click)="newPosts()"><ion-icon name="fastforward" color="primary"></ion-icon></button>
+      <!--<button ion-fab><ion-icon name="logo-googleplus" color="primary"></ion-icon></button>-->
     </ion-fab-list>
   </ion-fab>
 </ion-content>

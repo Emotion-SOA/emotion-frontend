@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {NlpService} from '../../app/services/nlp.service'
 import {VisionService} from '../../app/services/vision.service'
+import {PostPage} from '../post/post'
+import {NavController} from "ionic-angular";
 
 @Component({
   selector: 'page-emotion',
@@ -10,7 +12,19 @@ import {VisionService} from '../../app/services/vision.service'
 export class EmotionPage {
   items: any;
 
-  constructor(private visionService: VisionService, private nlpService: NlpService) {
+  constructor(public navCtrl: NavController, private visionService: VisionService, private nlpService: NlpService) {
+  }
+
+  addPost() {
+    this.navCtrl.push(PostPage);
+  }
+
+  extractKeyword() {
+    //TODO: invoke service
+  }
+
+  newPosts() {
+    //TODO: put on new posts
   }
 
   //run everytime the page renders
