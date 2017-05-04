@@ -2,8 +2,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
+import { KeywordPage } from '../pages/keyword/keyword';
 import {DetailPostPage} from "../pages/detailpost/detailpost";
 import {ProfilePage} from "../pages/profile/profile";
+import {SummaryPage} from '../pages/summary/summary';
 import { LoginPage } from '../pages/login/login';
 import { RegisterPage } from '../pages/register/register';
 import { EmotionPage } from '../pages/emotion/emotion';
@@ -23,7 +25,9 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     PostPage,
     TracksPage,
     DetailPostPage,
-    ProfilePage
+    ProfilePage,
+    KeywordPage,
+    SummaryPage
   ],
   imports: [
     BrowserModule,
@@ -38,7 +42,9 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     PostPage,
     TracksPage,
     DetailPostPage,
-    ProfilePage
+    ProfilePage,
+    KeywordPage,
+    SummaryPage
   ],
   providers: [
     StatusBar,
