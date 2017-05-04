@@ -1,8 +1,6 @@
-import {Component} from '@angular/core';
 import {NlpService} from '../../app/services/nlp.service'
 import {VisionService} from '../../app/services/vision.service'
 import {PostPage} from '../post/post'
-import {NavController} from "ionic-angular";
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import {NavController} from 'ionic-angular';
 import { ToastController } from 'ionic-angular';
