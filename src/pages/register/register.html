@@ -1,28 +1,31 @@
-<ion-header>
-  <ion-navbar>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>Register</ion-title>
-  </ion-navbar>
-</ion-header>
+<!--<ion-header>-->
+  <!--<ion-navbar>-->
+    <!--<button ion-button menuToggle>-->
+      <!--<ion-icon name="menu"></ion-icon>-->
+    <!--</button>-->
+    <!--<ion-title>Register</ion-title>-->
+  <!--</ion-navbar>-->
+<!--</ion-header>-->
 
 
-<ion-content padding>
+<ion-content padding class="bg">
 
-  <ion-list>
+  <ion-list class="form">
     <ion-item>
-      <ion-label color="primary">Username: </ion-label>
-      <ion-input placeholder="Text Input"></ion-input>
+      <ion-label floating color="light">Username</ion-label>
+      <ion-input type="text"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label color="primary">Password: </ion-label>
-      <ion-input placeholder="Text Input"></ion-input>
+      <ion-label floating color="light">Email</ion-label>
+      <ion-input type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating color="light">Password</ion-label>
+      <ion-input type="password"></ion-input>
     </ion-item>
   </ion-list>
 
-  <ion-item>
-  <button ion-button item-right round color="primary" (click)="register()" >register</button>
-  </ion-item>
+  <button class="btn1" color="light" ion-button outline block margin-bottom (click)="openPage('emotion')">Sign up</button>
+  <button class="btn2" color="calm" ion-button outline block margin-top (click)="openPage('login')">Log in</button>
 
 </ion-content>

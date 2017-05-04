@@ -11,7 +11,8 @@ import { RegisterPage } from '../pages/register/register';
 import { EmotionPage } from '../pages/emotion/emotion';
 import { PostPage } from '../pages/post/post';
 import { TracksPage } from '../pages/tracks/tracks';
-
+import {VisionService} from './services/vision.service';
+import {NlpService} from './services/nlp.service';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
@@ -46,6 +47,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   providers: [
     StatusBar,
     SplashScreen,
+    VisionService,
+    NlpService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

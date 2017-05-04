@@ -4,6 +4,7 @@ import {PostPage} from '../post/post'
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import {NavController} from 'ionic-angular';
 import { ToastController } from 'ionic-angular';
+import {ModalController} from 'ionic-angular';
 
 declare var BMap;
 
@@ -18,11 +19,13 @@ export class EmotionPage {
 
   items: any;
 
-  constructor(public navCtrl: NavController, public toastCtrl: ToastController, private visionService: VisionService, private nlpService: NlpService) {
+  constructor(public modalCtrl: ModalController, public navCtrl: NavController, public toastCtrl: ToastController, private visionService: VisionService, private nlpService: NlpService) {
   }
 
   addPost() {
-    this.navCtrl.push(PostPage);
+    let modal = this.modalCtrl.create(PostPage);
+    modal.present();
+    // this.navCtrl.push(PostPage);
   }
 
   extractKeyword() {

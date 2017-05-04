@@ -1,12 +1,12 @@
-<ion-header color="primary">
-  <ion-navbar>
-    <button ion-button menuToggle>
+<ion-header>
+  <ion-navbar class="mynavbar">
+    <button ion-button menuToggle color="light">
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title color="primary">E-Motion</ion-title>
+    <ion-title class="mytitle" color="primary">E-Motion</ion-title>
   </ion-navbar>
 </ion-header>
-<ion-content padding>
+<ion-content>
   <ion-content class="map">
     <div #mapContainer id="mapContainer" class="mapContainer" style="height:100%"></div>
   </ion-content>
@@ -16,7 +16,6 @@
       <button ion-fab (click)="addPost()"><ion-icon name="paw" color="primary"></ion-icon></button>
       <button ion-fab (click)="extractKeyword()"><ion-icon name="contract" color="primary"></ion-icon></button>
       <button ion-fab (click)="newPosts()"><ion-icon name="fastforward" color="primary"></ion-icon></button>
-      <!--<button ion-fab><ion-icon name="logo-googleplus" color="primary"></ion-icon></button>-->
     </ion-fab-list>
   </ion-fab>
 </ion-content>

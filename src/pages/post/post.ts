@@ -1,12 +1,21 @@
 import { Component } from '@angular/core';
-import { ToastController } from 'ionic-angular';
+import { ToastController , ViewController, Platform, NavParams, NavController} from 'ionic-angular';
+import {EmotionPage} from '../emotion/emotion';
 
 @Component({
   selector: 'page-post',
   templateUrl: 'post.html'
 })
 export class PostPage {
-  constructor(public toastCtrl: ToastController) {
+  userID: Number;
+  constructor(
+    public toastCtrl: ToastController,
+    public platform: Platform,
+    public params: NavParams,
+    public viewCtrl: ViewController,
+    public navCtrl: NavController
+  ) {
+    // this.userID = this.params.get("userID");
   }
 
   post() {
@@ -19,5 +28,11 @@ export class PostPage {
 
     });
     toast.present();
+    //store into DB
+    this.dismiss();
+  }
+
+  dismiss() {
+    this.viewCtrl.dismiss();
   }
 }
