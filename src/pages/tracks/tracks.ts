@@ -10,12 +10,12 @@ export class TracksPage {
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.tracks = [
       {icon: "imgs/img0.jpeg",
-        img: "imgs/post0.jpg",
+        img: "imgs/menu.jpg",
         text: "Like a dog, like a god.",
         location: "Zhang Jiang",
         time: 'April 25, 2017'},
       {icon: "imgs/img0.jpeg",
-        img: "imgs/post1.jpg",
+        img: "imgs/menu.jpg",
         text: "Panda Eyes, Panda Eyes, Panda Eyes...",
         location: "Zhang Jiang",
         time: 'April 24, 2017'}

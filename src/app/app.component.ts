@@ -1,9 +1,10 @@
 import {Component, ViewChild} from "@angular/core";
 import {NlpService} from "./services/nlp.service";
-import {VisionService} from "./services/vision.service"
+import {VisionService} from "./services/vision.service";
 import {Platform, MenuController, Nav} from "ionic-angular";
 import {LoginPage} from "../pages/login/login";
 import {EmotionPage} from "../pages/emotion/emotion";
+import {ProfilePage} from "../pages/profile/profile";
 import {TracksPage} from "../pages/tracks/tracks";
 import {StatusBar} from "@ionic-native/status-bar";
 import {SplashScreen} from "@ionic-native/splash-screen";
@@ -47,6 +48,11 @@ export class MyApp {
     this.menu.close();
     // navigate to the new page if it is not the current page
     this.nav.setRoot(page.component);
+  }
+
+  showProfile() {
+    this.menu.close();
+    this.nav.push(ProfilePage);
   }
 
   logout() {

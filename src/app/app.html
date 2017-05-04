@@ -3,6 +3,11 @@
   <ion-header>
     <ion-toolbar>
       <ion-title>E-Motion</ion-title>
+      <ion-buttons end>
+      <button ion-button icon-only color="light" (click)="showProfile()">
+        <ion-icon name="contact"></ion-icon>
+      </button>
+    </ion-buttons>
     </ion-toolbar>
   </ion-header>
 
@@ -13,7 +18,10 @@
         {{p.title}}
       </button>
     </ion-list>
-    <button class="button-full-ios logout" ion-button full color="danger" (click)="logout()">Log out</button>
+    <button class="button-full-ios logout" ion-button icon-left full color="danger" (click)="logout()">
+      <ion-icon name="exit"></ion-icon>
+      Log out
+    </button>
   </ion-content>
 
 </ion-menu>

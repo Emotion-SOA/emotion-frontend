@@ -1,6 +1,7 @@
 import {NlpService} from '../../app/services/nlp.service'
 import {VisionService} from '../../app/services/vision.service'
-import {PostPage} from '../post/post'
+import {PostPage} from '../post/post';
+import {DetailPostPage} from '../detailpost/detailpost';
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import {NavController} from 'ionic-angular';
 import { ToastController } from 'ionic-angular';
@@ -26,6 +27,11 @@ export class EmotionPage {
     let modal = this.modalCtrl.create(PostPage);
     modal.present();
     // this.navCtrl.push(PostPage);
+  }
+
+  showdetail() {
+    let modal = this.modalCtrl.create(DetailPostPage);
+    modal.present();
   }
 
   extractKeyword() {
