@@ -51,11 +51,14 @@ export class EmotionPage {
     },{enableHighAccuracy: true});
 
     function loadOverlay(point, imgsrc, text) {
+      // Construct this layer with the info
       function MotionOverlay(point) {
         this._point = point;
         this._imgsrc = imgsrc;
         this._text = text;
       }
+
+      // Scale the size of the marker.
       function scale() {
         let center = map.getCenter();
         let distance = map.getDistance(point, center);
@@ -77,10 +80,14 @@ export class EmotionPage {
         return scaledSize;
       }
 
-      function setInfo(imgsrc, text){
+      // Set the information of the show div
+      function setInfo(imgsrc, text, locationstr){
         divCtrl._img.setAttribute("src", imgsrc);
-        divCtrl._div.getElementsByTagName("span")[0].innerHTML = text;
+        divCtrl._div.getElementsByTagName("span")[0].innerHTML = locationstr;
+        divCtrl._div.getElementsByTagName("span")[1].innerHTML = text;
+
       }
+
       MotionOverlay.prototype = new BMap.Overlay();
       MotionOverlay.prototype.initialize = function (map) {
         this._map = map;
@@ -107,12 +114,17 @@ export class EmotionPage {
         }
         document.body.appendChild(img);
         div.appendChild(img);
-
+        // Show the details of this div
         let that = this;
         div.ongotpointercapture = function(e){
           if(divCtrl != undefined) {
-              setInfo(that._imgsrc, that._text);
+            let geoc = new BMap.Geocoder();
+            geoc.getLocation(point, function(rs){
+              let addComp = rs.addressComponents;
+              let address = addComp.province + ", " + addComp.city + ", " + addComp.district + ", " + addComp.street + ", " + addComp.streetNumber;
+              setInfo(that._imgsrc, that._text, address);
               divCtrl.show();
+            });
           }
           let e_ = window.event || e;
           if (e_.stopPropagation) {
@@ -122,23 +134,12 @@ export class EmotionPage {
           }
         };
 
-        map.addEventListener("onclick", function () {
-          if(divCtrl != undefined) {
-            if(divCtrl.isVisible()){
-              divCtrl.hide();
-            }
-          }
-        });
-
-        map.addEventListener("dragend", function() {
-          that._div.style.width = scale() + "px";
-          that._div.style.height = scale() + "px";
-        })
-
+        // Add the layer to map
         map.getPanes().labelPane.appendChild(div);
         return div;
       }
 
+      // Must implement, draw the div up on the pixel of the point
       MotionOverlay.prototype.draw = function () {
         let map = this._map;
         let pixel = map.pointToOverlayPixel(this._point);
@@ -149,14 +150,24 @@ export class EmotionPage {
       let myCompOverlay = new MotionOverlay(point);
       map.addOverlay(myCompOverlay);
       map.addEventListener("zoomend", function () {
-        // alert("当前地图中心点：" + map.getCenter().lng + "," + map.getCenter().lat);
         myCompOverlay._div.style.width = scale() + "px";
         myCompOverlay._div.style.height = scale() + "px";
       });
+      // Add according map event listener: 1. click to hidden the details 2. drag | zoom to re-scale
+      map.addEventListener("onclick", function () {
+        if(divCtrl != undefined) {
+          if(divCtrl.isVisible()){
+            divCtrl.hide();
+          }
+        }
+      });
+      map.addEventListener("dragend", function() {
+        myCompOverlay._div.style.width = scale() + "px";
+        myCompOverlay._div.style.height = scale() + "px";
+      })
     }
     function loadCtrlDiv() {
       function ZoomControl(){
-        // 默认停靠位置和偏移量
         this.defaultAnchor = BMap.BMAP_ANCHOR_TOP_LEFT;
         this.defaultOffset = new BMap.Size(50, 50);
       }
@@ -173,8 +184,8 @@ export class EmotionPage {
           div.style.lineHeight = "30px";
           div.style.width = "80%";
           div.style.height = "80%";
-          div.style.fontSize = "20px";
-          div.style.boxShadow = "5px 5px 20px 2px #4E6299";
+          div.style.fontSize = "10px";
+          div.style.boxShadow = "2px 2px 2px 2px #BBB6C2";
           div.style.borderRadius = "20px 20px 20px 20px";
         }
         let img = this._img = document.createElement("IMG");
@@ -187,8 +198,43 @@ export class EmotionPage {
         document.body.appendChild(img);
         div.appendChild(img);
 
+        let subdiv = document.createElement("div");
+        {
+          subdiv.style.backgroundColor = "#eeeeee";
+          subdiv.style.margin = "0";
+          subdiv.style.color = "black";
+          subdiv.style.width = "100%";
+          subdiv.style.height = "46%";
+          subdiv.style.borderRadius = "inherit";
+        }
+        div.appendChild(subdiv);
+
+        let pin = document.createElement("ion-icon");
+        pin.setAttribute("name", "pin");
+        pin.setAttribute("role", "img");
+        pin.setAttribute("class", "icon icon-ios ion-ios-pin");
+        pin.setAttribute("aria-label", "pin");
+        pin.setAttribute("ng-reflect-name", "pin");
+        pin.style.height = "2%";
+        subdiv.appendChild(pin);
+
+        let location = document.createElement("span");
+        {
+          location.style.margin = "0";
+          location.style.width = "100%";
+          location.style.height = "10%";
+          location.style.display = "inline";
+        }
+        subdiv.appendChild(location);
+
         let span = this._span = document.createElement("span");
-        div.appendChild(span);
+        {
+          span.style.margin = "0";
+          span.style.width = "100%";
+          span.style.height = "88%";
+          span.style.display = "block";
+        }
+        subdiv.appendChild(span);
 
         map.getContainer().appendChild(div);
         return div;
