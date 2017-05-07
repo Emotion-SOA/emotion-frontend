@@ -1,6 +1,7 @@
 import {Component, ViewChild} from "@angular/core";
 import {NlpService} from "./services/nlp.service";
 import {VisionService} from "./services/vision.service";
+import {DataService} from "./services/data.service"
 import {Platform, MenuController, Nav} from "ionic-angular";
 import {LoginPage} from "../pages/login/login";
 import {EmotionPage} from "../pages/emotion/emotion";
@@ -12,7 +13,7 @@ import {SplashScreen} from "@ionic-native/splash-screen";
 
 @Component({
   templateUrl: 'app.html',
-  providers: [NlpService, VisionService]
+  providers: [NlpService, VisionService, DataService]
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
