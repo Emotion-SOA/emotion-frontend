@@ -20,10 +20,10 @@ export class LoginPage {
   openPage(page: string) {
     if (page == 'login') {
       console.log('email=' + this.email + '\npassword=' + this.password);
-      let result = this.dataService.postLogin(this.email, this.password);
+      let result = this.dataService.login(this.email, this.password);
       result.subscribe(res => {
         if (res.json().error) {
-          this.toastCtrl.create({message: 'Login failed.\n Please check you username and password', 
+          this.toastCtrl.create({message: 'Login failed.', 
             duration: 3000, position: 'middle'}).present();
         } else {
           this.navCtrl.setRoot(EmotionPage);

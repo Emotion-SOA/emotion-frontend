@@ -34,8 +34,9 @@ export class EmotionPage {
 
   extractKeyword() {
     //TODO: invoke service
-    let modal = this.modalCtrl.create(SummaryPage);
-    modal.present();
+    // let modal = this.modalCtrl.create(SummaryPage);
+    // modal.present();
+    this.navCtrl.push(SummaryPage);
   }
 
   newPosts() {

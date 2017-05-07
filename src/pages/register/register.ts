@@ -19,7 +19,7 @@ export class RegisterPage {
 
   openPage(page: string) {
     if (page == 'emotion') {
-      let result = this.dataService.postRegister(this.username, this.email, this.password);
+      let result = this.dataService.register(this.username, this.email, this.password);
       result.subscribe(res => {
         if (res.json().error) {
           this.toastCtrl.create({message: 'Register failed.\n The email is registered or invalid.', 
