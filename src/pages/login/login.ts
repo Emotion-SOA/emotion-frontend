@@ -21,13 +21,9 @@ export class LoginPage {
   openPage(page: string) {
     if (page == 'login') {
       console.log('email=' + this.email + '\npassword=' + this.password);
-      //subscribe(user => {
-    //   this.user = user;
-    //   alert(this.user.token);
-    // });
       let result = this.dataService.postLogin(this.email, this.password);
       console.log(result);
-      // this.navCtrl.setRoot(EmotionPage, {token: this.user.token});
+      //TODO: if success this.navCtrl.setRoot(EmotionPage, {token: this.user.token});
     }
     else {
       this.navCtrl.setRoot(RegisterPage);
