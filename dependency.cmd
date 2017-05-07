@@ -1,4 +1,4 @@
-npm install rxjs
+npm install rxjs --save
 npm install @ionic-native/core --save
 ionic plugin add --save cordova-plugin-camera
 npm install --save @ionic-native/camera
@@ -10,5 +10,5 @@ ionic plugin add cordova-plugin-filepath --save
 npm install --save @ionic-native/file-path
 npm uninstall --save @ionic-native/core
 npm install --save @ionic-native/core@latest
-npm install -g typings
+npm install -g typings --save
 typings install dt~cordova --save --global
