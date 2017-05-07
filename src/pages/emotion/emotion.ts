@@ -160,7 +160,8 @@ export class EmotionPage {
         div.appendChild(img);
         // Show the details of this div
         let that = this;
-        div.ongotpointercapture = function(e){
+        // div.ongotpointercapture = function(e){
+        div.onclick = function(e){
           if(divCtrl != undefined) {
             let geoc = new BMap.Geocoder();
             geoc.getLocation(point, function(rs){
@@ -208,6 +209,12 @@ export class EmotionPage {
       map.addEventListener("dragend", function() {
         myCompOverlay._div.style.width = scale() + "px";
         myCompOverlay._div.style.height = scale() + "px";
+        let center = map.getCenter();
+        let distance = map.getDistance(point, center);
+        // alert(distance);
+        if( distance < 10){
+          myCompOverlay._div.onclick();
+        }
       })
     }
     function loadCtrlDiv() {
@@ -276,9 +283,20 @@ export class EmotionPage {
           span.style.margin = "0";
           span.style.width = "100%";
           span.style.height = "88%";
-          span.style.display = "block";
+          span.style.display = "balertlock";
         }
         subdiv.appendChild(span);
+
+        div.onclick = function(e){
+          // todo showdetail
+          // EmotionPage.showdetail();
+          let e_ = window.event || e;
+          if (e_.stopPropagation) {
+            e_.stopPropagation();
+          } else {
+            e_.cancelBubble = true;
+          }
+        };
 
         map.getContainer().appendChild(div);
         return div;
