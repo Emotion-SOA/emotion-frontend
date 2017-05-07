@@ -23,19 +23,14 @@ export class EmotionPage {
   }
 
   addPost() {
-    let modal = this.modalCtrl.create(PostPage);
-    modal.present();
+    this.navCtrl.push(PostPage);
   }
 
   showdetail() {
-    let modal = this.modalCtrl.create(DetailPostPage);
-    modal.present();
+    this.navCtrl.push(DetailPostPage);
   }
 
   extractKeyword() {
-    //TODO: invoke service
-    // let modal = this.modalCtrl.create(SummaryPage);
-    // modal.present();
     this.navCtrl.push(SummaryPage);
   }
 

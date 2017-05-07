@@ -1,6 +1,7 @@
 import {Component} from "@angular/core";
 import {ModalController, ToastController, ViewController, Platform, NavParams, NavController} from "ionic-angular";
 import {KeywordPage} from "../keyword/keyword";
+import {DataService} from "../../app/services/data.service";
 
 @Component({
   selector: 'page-detailpost',
@@ -15,6 +16,7 @@ export class DetailPostPage {
     public viewCtrl: ViewController,
     public navCtrl: NavController,
     public modalCtrl: ModalController,
+    private dataService: DataService
   ) {
     this.post =
       {icon: "imgs/img0.jpeg",
@@ -22,6 +24,11 @@ export class DetailPostPage {
         text: "Lorem ipsum dolor sit amet, ligula suspendisse nulla pretium, rhoncus tempor placerat fermentum, enim integer ad vestibulum volutpat. Nisl rhoncus turpis est, vel elit, congue wisi enim nunc ultricies sit, magna tincidunt. Maecenas aliquam maecenas ligula nostra, accumsan taciti. Sociis mauris in integer, a dolor netus non dui aliquet, sagittis felis sodales, dolor sociis mauris, vel eu libero cras. Interdum at. Eget habitasse elementum est, ipsum purus pede porttitor class, ut adipiscing, aliquet sed auctor, imperdiet arcu per diam dapibus libero duis. Enim eros in vel, volutpat nec pellentesque leo, temporibus scelerisque nec.",
         location: "Zhang Jiang",
         time: 'April 25, 2017'};
+    this.dataService.getPostsByRange(12.345, 23.456, 100000.0).subscribe(res => {
+      console.log(res.json());
+      this.toastCtrl.create({message: 'Check console\'s log\n',
+        duration: 3000, position: 'middle'}).present();
+    })
   }
 
   analyze() {

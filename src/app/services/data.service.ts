@@ -36,7 +36,7 @@ export class DataService {
   // <img src="http://emotion-soa.site:8080/emotion-server/image/0.png">
   
   addPost(text: string, imagePath: string, latitude: number, longitude: number) {
-    return this.http.post(this.urlPrefix + "/post", {
+    return this.http.post(this.urlPrefix + "/post/", {
       "token": this.token,
       "text": text,
       "imagePath": imagePath,
