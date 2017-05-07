@@ -1,12 +1,10 @@
-import {NlpService} from '../../app/services/nlp.service'
-import {VisionService} from '../../app/services/vision.service'
-import {PostPage} from '../post/post';
-import {DetailPostPage} from '../detailpost/detailpost';
-import {SummaryPage} from '../summary/summary';
-import { Component, ViewChild, ElementRef } from '@angular/core';
-import {NavController} from 'ionic-angular';
-import { ToastController } from 'ionic-angular';
-import {ModalController} from 'ionic-angular';
+import {NlpService} from "../../app/services/nlp.service";
+import {VisionService} from "../../app/services/vision.service";
+import {PostPage} from "../post/post";
+import {DetailPostPage} from "../detailpost/detailpost";
+import {SummaryPage} from "../summary/summary";
+import {Component, ViewChild, ElementRef} from "@angular/core";
+import {NavController, ToastController, ModalController} from "ionic-angular";
 
 declare let BMap;
 
@@ -63,16 +61,16 @@ export class EmotionPage {
   loadMap() {
     let map = new BMap.Map(this.mapElement.nativeElement,{enableMapClick:false,minZoom:8,maxZoom:20});
     let geolocation = new BMap.Geolocation();
-    let size = 200;
+    let size = 500;
     let divCtrl;
     divCtrl = loadCtrlDiv();
     divCtrl.hide();
-    var top_right_navigation = new BMap.NavigationControl({anchor: 1, type: 1});
+    let top_right_navigation = new BMap.NavigationControl({anchor: 1, type: 1});
     map.addControl(top_right_navigation);
 
     geolocation.getCurrentPosition(function(r){
       if(this.getStatus() == 0){
-        var mk = new BMap.Marker(r.point);
+        let mk = new BMap.Marker(r.point);
         map.addOverlay(mk);
         map.panTo(r.point);
 
@@ -106,17 +104,23 @@ export class EmotionPage {
         if(distance < 10){
           distance = 10;
         }
-        if(zoom < 10){
-          distance = 8000;
+        if (zoom < 18) {
+          distance = 800;
         }
-        else if(zoom < 17){
-          distance = 2000;
-        }
-        else if(zoom < 18){
-          distance = 1000;
-        }
+        // if(zoom < 10){
+        //   distance = 8000;
+        // }
+        // else if(zoom < 17){
+        //   distance = 2000;
+        // }
+        // else if(zoom < 18){
+        //   distance = 1000;
+        // }
         let factor = 0.8;
         let scaledSize = (size * 0.002 * (Math.pow(zoom,3) * 0.01 * factor + 8000/distance*(1-factor)));
+        if (zoom < 18) {
+          scaledSize = (size * 0.002 * (Math.pow(19,3) * 0.01 * factor + 8000/distance*(1-factor)));
+        }
         return scaledSize;
       }
 
@@ -177,7 +181,7 @@ export class EmotionPage {
         // Add the layer to map
         map.getPanes().labelPane.appendChild(div);
         return div;
-      }
+      };
 
       // Must implement, draw the div up on the pixel of the point
       MotionOverlay.prototype.draw = function () {
@@ -185,7 +189,7 @@ export class EmotionPage {
         let pixel = map.pointToOverlayPixel(this._point);
         this._div.style.left = pixel.x  - scale()/2 + "px";
         this._div.style.top = pixel.y - scale() + "px";
-      }
+      };
 
       let myCompOverlay = new MotionOverlay(point);
       map.addOverlay(myCompOverlay);
@@ -278,8 +282,8 @@ export class EmotionPage {
 
         map.getContainer().appendChild(div);
         return div;
-      }
-      var myZoomCtrl = new ZoomControl();
+      };
+      let myZoomCtrl = new ZoomControl();
       map.addControl(myZoomCtrl);
       return myZoomCtrl;
     }

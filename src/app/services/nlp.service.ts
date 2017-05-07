@@ -1,9 +1,8 @@
 /**
  * Created by mayezhou on 2017/5/1.
  */
-import {Injectable} from '@angular/core';
-// import {Http} from '@angular/http';
-import 'rxjs/Rx';
+import {Injectable} from "@angular/core";
+import "rxjs/Rx";
 import * as NaturalLanguageUnderstandingV1 from "watson-developer-cloud/natural-language-understanding/v1.js"; //{NaturalLanguageUnderstandingV1} from
 
 @Injectable()

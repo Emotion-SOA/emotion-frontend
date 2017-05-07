@@ -1,6 +1,5 @@
-import { Component } from '@angular/core';
-import { ToastController , ViewController, Platform, NavParams, NavController} from 'ionic-angular';
-import {EmotionPage} from '../emotion/emotion';
+import {Component} from "@angular/core";
+import {ToastController, ViewController, Platform, NavParams, NavController} from "ionic-angular";
 
 @Component({
   selector: 'page-post',

@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
-import {ToastController, NavController} from 'ionic-angular';
-import {EmotionPage} from '../emotion/emotion';
-import {LoginPage} from '../login/login';
+import {Component} from "@angular/core";
+import {ToastController, NavController} from "ionic-angular";
+import {EmotionPage} from "../emotion/emotion";
+import {LoginPage} from "../login/login";
 
 @Component({
   selector: 'page-register',

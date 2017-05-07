@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
-import { ModalController, ToastController , ViewController, Platform, NavParams, NavController} from 'ionic-angular';
-import {KeywordPage} from '../keyword/keyword';
+import {Component} from "@angular/core";
+import {ModalController, ToastController, ViewController, Platform, NavParams, NavController} from "ionic-angular";
+import {KeywordPage} from "../keyword/keyword";
 
 @Component({
   selector: 'page-detailpost',
