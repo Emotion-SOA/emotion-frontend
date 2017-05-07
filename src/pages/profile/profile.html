@@ -1,0 +1,13 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle color="light">
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>My Profile</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content margin>
+  <button (click)="presentActionSheet()"><img id="HeadPhoto" src="{{pathForImage(lastImage)}}"></button>
+</ion-content>

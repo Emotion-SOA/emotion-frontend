@@ -1,0 +1,34 @@
+page-keyword {
+  .card-background-page {
+    // margin: 0;
+
+    ion-card {
+      position: relative;
+      // margin: auto;
+      text-align: center;
+    }
+
+    .card-title {
+      position: absolute;
+      top: 36%;
+      font-size: 2.0em;
+      width: 100%;
+      font-weight: bold;
+      color: #fff;
+    }
+
+    .card-subtitle {
+      font-size: 1.0em;
+      position: absolute;
+      top: 52%;
+      width: 100%;
+      color: #fff;
+    }
+
+    a:link {text-decoration:none;  color:white;}    /* 未被访问的链接 */
+    a:visited {text-decoration:none;color:white;} /* 已被访问的链接 */
+    a:hover {text-decoration:none;}   /* 鼠标指针移动到链接上 */
+    a:active {text-decoration:none;}  /* 正在被点击的链接 */
+
+  }
+}
