@@ -29,8 +29,14 @@ export class DetailPostPage {
   }
 
   analyze() {
-    let modal = this.modalCtrl.create(KeywordPage, {text: this.post.text});
-    modal.present();
+    if (this.post.text.length < 50) {
+      console.log("Too short text!");
+      this.toastCtrl.create({message: 'Too short text!',
+        duration: 3000, position: 'middle'}).present();
+    } else {
+      let modal = this.modalCtrl.create(KeywordPage, {text: this.post.text});
+      modal.present();
+    }
   }
 
   dismiss() {

@@ -40,7 +40,7 @@
     <ion-list *ngSwitchCase="'keyword'">
       <ion-item *ngFor="let k of keywords">
         <h2>{{k.text}}</h2>
-        <ion-badge item-right>{{k.rate}}</ion-badge>
+        <ion-badge item-right>{{k.relevance}}</ion-badge>
       </ion-item>
     </ion-list>
   </div>
