@@ -46,11 +46,10 @@ export class PostPage {
   }
 
   post() {
-    //upload image
+    //upload image TODO: test
     this.lastImage = this.uploadImage();
-
     //store into DB
-    this.dataService.addPost(this.text, this.lastImage, this.latitude, this.longitude).subscribe(res => {
+    this.dataService.addPost(this.text, "/image/3.jpeg", 31.190208, 121.596934).subscribe(res => {
       console.log(res.json());
       this.toastCtrl.create({
         message: 'Check console\'s log\n',
