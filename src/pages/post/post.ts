@@ -26,7 +26,7 @@ export class PostPage {
       console.log(res.json());
       this.toastCtrl.create({message: 'Check console\'s log\n',
         duration: 3000, position: 'middle'}).present();
-    })
+    });
     let toast = this.toastCtrl.create({
       message: 'Post successfully',
       duration: 3000,

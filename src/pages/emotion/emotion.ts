@@ -1,10 +1,9 @@
-import {NlpService} from "../../app/services/nlp.service";
-import {VisionService} from "../../app/services/vision.service";
 import {PostPage} from "../post/post";
 import {DetailPostPage} from "../detailpost/detailpost";
 import {SummaryPage} from "../summary/summary";
 import {Component, ViewChild, ElementRef} from "@angular/core";
-import {NavController, ToastController, ModalController} from "ionic-angular";
+import {NavController, ToastController} from "ionic-angular";
+import {DataService} from "../../app/services/data.service";
 
 declare let BMap;
 
@@ -19,7 +18,7 @@ export class EmotionPage {
 
   items: any;
 
-  constructor(public modalCtrl: ModalController, public navCtrl: NavController, public toastCtrl: ToastController, private visionService: VisionService, private nlpService: NlpService) {
+  constructor(private dataService: DataService, public navCtrl: NavController, public toastCtrl: ToastController) {
   }
 
   addPost() {
@@ -34,21 +33,9 @@ export class EmotionPage {
     this.navCtrl.push(SummaryPage);
   }
 
-  newPosts() {
-    //TODO: put on new posts
-  }
-
   //run everytime the page renders
   ngOnInit() {
   }
-
-  //not used
-  // getPosts() {
-  //   this.nlpService.getPosts().subscribe(response => {
-  //     console.log(response);
-  //     this.items = response.data.children;
-  //   })
-  // }
 
   ionViewDidLoad() {
     this.loadMap();
@@ -303,14 +290,4 @@ export class EmotionPage {
     }
   }
 
-  post(msg : string) {
-    // Post ...
-    // Success.
-    let toast = this.toastCtrl.create({
-      message: msg,
-      duration: 3000,
-      position: 'middle'
-    });
-    toast.present();
-  }
 }

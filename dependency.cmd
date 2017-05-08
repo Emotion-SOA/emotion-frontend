@@ -12,3 +12,7 @@ npm uninstall --save @ionic-native/core
 npm install --save @ionic-native/core@latest
 npm install -g typings --save
 typings install dt~cordova --save --global
+
+ionic platform add ios
+ionic build ios
+ionic emulate ios
