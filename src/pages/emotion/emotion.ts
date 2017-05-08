@@ -26,9 +26,9 @@ export class EmotionPage {
     this.navCtrl.push(PostPage);
   }
 
-  showdetail() {
-    this.navCtrl.push(DetailPostPage);
-  }
+  // showdetail() {
+  //   this.navCtrl.push(DetailPostPage);
+  // }
 
   extractKeyword() {
     this.navCtrl.push(SummaryPage);
@@ -55,6 +55,11 @@ export class EmotionPage {
   }
 
   loadMap() {
+    let page = this;
+    let _showdetail = function(){
+      page.navCtrl.push(DetailPostPage);
+    };
+
     let map = new BMap.Map(this.mapElement.nativeElement,{enableMapClick:false,minZoom:8,maxZoom:20});
     let geolocation = new BMap.Geolocation();
     let size = 500;
@@ -285,7 +290,7 @@ export class EmotionPage {
 
         div.onclick = function(e){
           // todo showdetail
-          // EmotionPage.showdetail();
+          _showdetail();
           let e_ = window.event || e;
           if (e_.stopPropagation) {
             e_.stopPropagation();
