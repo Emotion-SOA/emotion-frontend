@@ -22,7 +22,25 @@ export class EmotionPage {
   }
 
   addPost() {
-    this.navCtrl.push(PostPage);
+    let page = this;
+    let obj;
+    let address;
+    let geolocation = new BMap.Geolocation();
+    geolocation.getCurrentPosition(function(r){
+          if(this.getStatus() == 0){
+            let geoc = new BMap.Geocoder();
+            geoc.getLocation(r.point, function(rs){
+              let addComp = rs.addressComponents;
+              address = addComp.province + ", " + addComp.city + ", " + addComp.district + ", " + addComp.street + ", " + addComp.streetNumber;
+              obj={longitude:r.point.lng, latitude:r.point.lat, address: address}
+              console.log(obj);
+              page.navCtrl.push(PostPage,obj);
+            });
+          }
+          else {
+            alert('failed'+this.getStatus());
+          }
+        },{enableHighAccuracy: true});
   }
 
   // showdetail() {
