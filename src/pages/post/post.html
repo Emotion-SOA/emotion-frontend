@@ -30,7 +30,9 @@
       <h2>Posting...</h2>
     </ion-item>
 
-    <img src="imgs/menu.jpg" height="100%" width="100%">
+    <button ion-button *ngIf="lastImage == null" full clear color="primary" (click)="presentActionSheet()">Choose Picture</button>
+
+    <img id="HeadPhoto" src="{{pathForImage(lastImage)}}">
 
     <ion-card-content>
       <p>
@@ -43,7 +45,7 @@
       <ion-col>
         <button ion-button icon-left clear small>
           <ion-icon name="pin"></ion-icon>
-          <div>Zhang Jiang</div>
+          <div>{{location}}</div>
         </button>
       </ion-col>
     </ion-row>

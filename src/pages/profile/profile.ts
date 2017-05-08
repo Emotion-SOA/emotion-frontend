@@ -11,7 +11,7 @@ import {File} from "@ionic-native/file";
 import {Transfer, TransferObject} from "@ionic-native/transfer";
 import {FilePath} from "@ionic-native/file-path";
 import {Camera} from "@ionic-native/camera";
-import {DataService} from "../../app/services/data.service"
+import {DataService} from "../../app/services/data.service";
 
 declare let cordova:any;
 
@@ -94,7 +94,6 @@ export class ProfilePage {
     });
   }
 
-  //TODO: Create a new name for the image
   private createFileName() {
     let d = new Date(),
       n = d.getTime(),
