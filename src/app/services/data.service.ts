@@ -58,6 +58,10 @@ export class DataService {
   getWatsonNLPAnalysis(text: string) {
     return this.http.get(this.urlPrefix + "/watson?text=" + text);
   }
+
+  getWordCloud(text: string) {
+    return this.http.get(this.urlPrefix + "/word-cloud?text=" + text);
+  }
 }
 
 interface Post {
