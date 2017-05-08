@@ -63,10 +63,20 @@ export class EmotionPage {
         map.panTo(r.point);
 
         // todo get the imgsrc, abbreviation_txt, txt from server.
-        let txt = "No pain, No gain. That's the truth.";
-        loadOverlay(r.point,"imgs/img0.jpeg", txt);
-        let _txt = "No pain, No gain. That's the fake.";
-        loadOverlay(new BMap.Point(r.point.lng - 0.0005,r.point.lat - 0.0005),"imgs/img0.jpeg", _txt);
+        page.dataService.getPostsByRange(r.point.lat, r.point.lng, 500).subscribe(
+          res => {
+            console.log(res.json());
+            let list = res.json();
+            let i: number = 0;
+            for(i=1; i<list.length;i++){
+              console.log(list[i].text);
+              loadOverlay(new BMap.Point(list[i].longitude,list[i].latitude),"http://emotion-soa.site:8080/emotion-server"+list[i].imagePath, list[i].text);
+            }
+          });
+        // let txt = "No pain, No gain. That's the truth.";
+        // loadOverlay(r.point,"imgs/img0.jpeg", txt);
+        // let _txt = "No pain, No gain. That's the fake.";
+        // loadOverlay(new BMap.Point(r.point.lng - 0.0005,r.point.lat - 0.0005),"imgs/img0.jpeg", _txt);
 
         map.centerAndZoom(r.point,17);
         map.enableScrollWheelZoom(true);     //开启鼠标滚轮缩放
@@ -271,12 +281,11 @@ export class EmotionPage {
           span.style.margin = "0";
           span.style.width = "100%";
           span.style.height = "88%";
-          span.style.display = "balertlock";
+          span.style.display = "block";
         }
         subdiv.appendChild(span);
 
         div.onclick = function(e){
-          // todo showdetail
           _showdetail();
           let e_ = window.event || e;
           if (e_.stopPropagation) {
