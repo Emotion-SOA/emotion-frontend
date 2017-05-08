@@ -31,7 +31,8 @@
       <p>April 25, 2017</p>
     </ion-item>
 
-    <button *ngif="lastImage == null" ion-button clear color="primary" (click)="presentActionSheet()">Choose Picture</button>
+    <button ion-button *ngIf="lastImage == null" full clear color="primary" (click)="presentActionSheet()">Choose Picture</button>
+
     <img id="HeadPhoto" src="{{pathForImage(lastImage)}}">
 
     <ion-card-content>

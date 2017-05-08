@@ -39,12 +39,13 @@ export class PostPage {
               private filePath: FilePath,
               public actionSheetCtrl: ActionSheetController,
               public loadingCtrl: LoadingController) {
-  }
-
-  post() {
     this.longitude = this.params.get("longtitude");
     this.latitude = this.params.get("latitude");
     this.location = this.params.get("address");
+    console.log(this.params.data);
+  }
+
+  post() {
     //upload image
     this.lastImage = this.uploadImage();
 
