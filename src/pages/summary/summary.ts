@@ -12,6 +12,7 @@ export class SummaryPage {
   emotions: any;
   sentiment: string;
   text: string;
+  cloudImgSrc: string;
 
   constructor(public toastCtrl: ToastController,
               public platform: Platform,
@@ -27,6 +28,18 @@ export class SummaryPage {
     let re = /[^A-Za-z0-9!\.]/;
     this.text = this.text.replace(re, " ");
     console.log("In SummaryPage constructor: all text (after filter)= \n" + this.text);
+
+    let page = this;
+    let isCallCloud = false;// set as true when presentation.
+    page.cloudImgSrc = "https://www.teamtempapp.com/wc/89c1d5d5-f680-44ff-b1de-90706cfa4bd9.png";
+    if(isCallCloud) {
+      this.dataService.getWordCloud(this.text).map(res => res.json()).subscribe(obj => {
+        let url = obj.url;
+        if (url) {
+          page.cloudImgSrc = url;
+        }
+      });
+    }
 
     let sentimentScore = 0;
     let emoResult: Emotion;
