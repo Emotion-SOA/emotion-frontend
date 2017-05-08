@@ -1,5 +1,6 @@
 import {Component} from "@angular/core";
 import {NavController, NavParams} from "ionic-angular";
+import {DataService} from "../../app/services/data.service"
 
 @Component({
   selector: 'page-tracks',
@@ -7,7 +8,10 @@ import {NavController, NavParams} from "ionic-angular";
 })
 export class TracksPage {
   tracks;
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController,
+              public navParams: NavParams,
+              public dataService: DataService) {
+    this.tracks = this.dataService.allPosts;
     this.tracks = [
       {icon: "imgs/img0.jpeg",
         img: "imgs/menu.jpg",

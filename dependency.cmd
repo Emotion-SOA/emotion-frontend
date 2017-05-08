@@ -21,6 +21,6 @@ export ANDROID_HOME=~/IdeaProjects/AndroidSDK/adt-bundle-mac-x86_64-20140702/sdk
 export PATH=$PATH:$ANDROID_HOME/platform-tools
 export PATH=$PATH:$ANDROID_HOME/tools
 
-ionic run android
-
+ionic run android --device
+chrome://inspect/#devices
 
