@@ -15,4 +15,12 @@ typings install dt~cordova --save --global
 
 ionic platform add ios
 ionic build ios
-ionic emulate ios
+ionic emulate ios -l -c
+
+export ANDROID_HOME=~/IdeaProjects/AndroidSDK/adt-bundle-mac-x86_64-20140702/sdk
+export PATH=$PATH:$ANDROID_HOME/platform-tools
+export PATH=$PATH:$ANDROID_HOME/tools
+
+ionic run android
+
+

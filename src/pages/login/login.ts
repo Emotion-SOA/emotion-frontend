@@ -21,20 +21,21 @@ export class LoginPage {
 
   openPage(page: string) {
     if (page == 'login') {
-      console.log('email=' + this.email + '\npassword=' + this.password);
-      let result = this.dataService.login(this.email, this.password);
-      result.subscribe(res => {
-        if (res.json().error) {
-          this.toastCtrl.create({
-            message: 'Login failed.',
-            duration: 3000, position: 'middle'
-          }).present();
-        } else {
-          this.navCtrl.setRoot(EmotionPage);
-        }
-      }, err => {
-        this.toastCtrl.create({message: 'Server error', duration: 3000}).present();
-      });
+      // console.log('email=' + this.email + '\npassword=' + this.password);
+      // let result = this.dataService.login(this.email, this.password);
+      // result.subscribe(res => {
+      //   if (res.json().error) {
+      //     this.toastCtrl.create({
+      //       message: 'Login failed.',
+      //       duration: 3000, position: 'middle'
+      //     }).present();
+      //   } else {
+      //     this.navCtrl.setRoot(EmotionPage);
+      //   }
+      // }, err => {
+      //   this.toastCtrl.create({message: 'Server error', duration: 3000}).present();
+      // });
+      this.navCtrl.setRoot(EmotionPage);
     }
     else {
       this.navCtrl.setRoot(RegisterPage);

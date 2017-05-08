@@ -1,5 +1,6 @@
 import {Component} from "@angular/core";
 import {ToastController, ViewController, Platform, NavParams, NavController} from "ionic-angular";
+import {DataService} from "../../app/services/data.service";
 
 
 @Component({
@@ -13,33 +14,52 @@ export class KeywordPage {
   mode: string;
   keywords: any;
   emotions: any;
+  emoResult: Emotion;
 
   constructor(
     public toastCtrl: ToastController,
     public platform: Platform,
     public params: NavParams,
     public viewCtrl: ViewController,
-    public navCtrl: NavController
+    public dataService: DataService
   ) {
+    //invoke Watson
+    let text = this.params.get("text");
+    let re = /[^A-Za-z0-9!\.]/;
+    text = text.replace(re, " ");
+    this.dataService.getWatsonNLPAnalysis(text).subscribe(res => {
+      console.log("Keyword: \n" + res.json());
+      this.toastCtrl.create({message: 'Check console\'s log\n',
+        duration: 3000, position: 'middle'}).present();
+    });
+    //invoke Google Vision
     this.keyword = "Planet";
     this.link = "http://www.baidu.com";
     this.mode = "emotion";
     this.emotions = [
       {
         text: 'Joy',
-        rate: 0.11
+        rate: this.emoResult.joy,
+        iconName: 'happy',
+        color: 'energized'
       },
       {
         text: 'Anger',
-        rate: 0.25
+        rate: this.emoResult.anger,
+        iconName: 'flame',
+        color: 'danger'
       },
       {
         text: 'Disgust',
-        rate: 0.56
+        rate: this.emoResult.disgust,
+        iconName: 'freebsd-devil',
+        color: 'dark'
       },
       {
         text: 'Sadness',
-        rate: 0.32
+        rate: this.emoResult.sadness,
+        iconName: 'sad',
+        color: 'optionblue'
       }
     ];
     this.keywords = [
@@ -101,4 +121,12 @@ export class KeywordPage {
   dismiss() {
     this.viewCtrl.dismiss();
   }
+}
+
+interface Emotion {
+  anger: number;
+  disgust: number;
+  fear: number;
+  joy: number;
+  sadness: number;
 }

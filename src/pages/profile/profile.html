@@ -9,5 +9,7 @@
 
 
 <ion-content margin>
-  <button (click)="presentActionSheet()"><img id="HeadPhoto" src="{{pathForImage(lastImage)}}"></button>
+  <button ion-button (click)="presentActionSheet()">pick image</button>
+  <img id="HeadPhoto" src="{{pathForImage(lastImage)}}">
+  <button ion-button (click)="uploadImage()">Upload</button>
 </ion-content>

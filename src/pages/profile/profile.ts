@@ -3,7 +3,6 @@ import {
   ToastController,
   Platform,
   NavController,
-  NavParams,
   ActionSheetController,
   LoadingController,
   Loading
@@ -12,8 +11,9 @@ import {File} from "@ionic-native/file";
 import {Transfer, TransferObject} from "@ionic-native/transfer";
 import {FilePath} from "@ionic-native/file-path";
 import {Camera} from "@ionic-native/camera";
+import {DataService} from "../../app/services/data.service"
 
-declare var cordova:any;
+declare let cordova:any;
 
 @Component({
   selector: 'page-profile',
@@ -24,6 +24,7 @@ export class ProfilePage {
   loading: Loading;
 
   constructor(public toastCtrl: ToastController,
+              public dataService: DataService,
               public platform: Platform,
               private camera: Camera,
               private transfer: Transfer,
@@ -31,7 +32,6 @@ export class ProfilePage {
               private filePath: FilePath,
               public actionSheetCtrl: ActionSheetController,
               public navCtrl: NavController,
-              public navParams: NavParams,
               public loadingCtrl: LoadingController) {
 
   }
@@ -94,7 +94,7 @@ export class ProfilePage {
     });
   }
 
-  // Create a new name for the image
+  //TODO: Create a new name for the image
   private createFileName() {
     let d = new Date(),
       n = d.getTime(),
@@ -130,38 +130,62 @@ export class ProfilePage {
   }
 
   public uploadImage() {
-    //TODO: Destination URL
-    let url = "http://yoururl/upload.php";
-
-    // File for Upload
-    let targetPath = this.pathForImage(this.lastImage);
-
-    // File name only
-    let filename = this.lastImage;
-
-    let options = {
-      fileKey: "file",
-      fileName: filename,
-      chunkedMode: false,
-      mimeType: "multipart/form-data",
-      params : {'fileName': filename}
-    };
-
-    const fileTransfer: TransferObject = this.transfer.create();
-
     this.loading = this.loadingCtrl.create({
       content: 'Uploading...',
     });
     this.loading.present();
+    this.file.readAsDataURL(cordova.file.dataDirectory, this.lastImage)
+      .then((res) => {
+        console.log("in uploadImage, promise res=" + res);
+        this.loading.dismissAll();
+        this.dataService.uploadImage(res).subscribe(r => {
+          if (r.json().error) {
+            console.log("uploadImage api return error=" + r.json().error)
+          } else {
+            console.log("return json=" + r.json());
+            console.log("return imagePath = " + r.json().imageName);
+            this.presentToast("Upload Success");
+            this.navCtrl.pop();
+          }
+        }, err=> {
+          console.log("api invoke err" + err);
+        });
+      })
+      .catch((err) => console.log("file read err" + err));
 
-    // Use the FileTransfer to upload the image
-    fileTransfer.upload(targetPath, url, options).then(data => {
-      this.loading.dismissAll();
-      this.presentToast('Image succesful uploaded.');
-    }, err => {
-      this.loading.dismissAll();
-      this.presentToast('Error while uploading file.');
-    });
+    //
+    // let url = "http://yoururl/upload.php";
+    //
+    // // File for Upload
+    // let targetPath = this.pathForImage(this.lastImage);
+    //
+    // // File name only
+    // let filename = this.lastImage;
+    //
+    //
+    // let options = {
+    //   fileKey: "file",
+    //   fileName: filename,
+    //   chunkedMode: false,
+    //   mimeType: "multipart/form-data",
+    //   params : {'fileName': filename}
+    // };
+    //
+    // const fileTransfer: TransferObject = this.transfer.create();
+    //
+    // this.loading = this.loadingCtrl.create({
+    //   content: 'Uploading...',
+    // });
+    // this.loading.present();
+    //
+    // // Use the FileTransfer to upload the image
+    // fileTransfer.upload(targetPath, url, options).then(data => {
+    //   this.loading.dismissAll();
+    //   this.presentToast('Image succesful uploaded.');
+    // }, err => {
+    //   this.loading.dismissAll();
+    //   this.presentToast('Error while uploading file.');
+    // });
   }
 
 }

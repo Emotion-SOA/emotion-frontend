@@ -7,7 +7,8 @@ import {DataService} from "../../app/services/data.service";
   templateUrl: 'post.html'
 })
 export class PostPage {
-  userID: Number;
+  text: string;
+
   constructor(
     public toastCtrl: ToastController,
     public platform: Platform,
@@ -16,12 +17,10 @@ export class PostPage {
     public navCtrl: NavController,
     private dataService: DataService
   ) {
-    // this.userID = this.params.get("userID");
   }
 
   post() {
-    // Post ...
-    // Success.
+    //TODO:
     this.dataService.addPost("add-post-test", "/image/0.png", 23.123, 32.321).subscribe(res => {
       console.log(res.json());
       this.toastCtrl.create({message: 'Check console\'s log\n',
