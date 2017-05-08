@@ -43,8 +43,8 @@ export class EmotionPage {
 
   loadMap() {
     let page = this;
-    let _showdetail = function(){
-      page.navCtrl.push(DetailPostPage);
+    let _showdetail = function(obj){
+      page.navCtrl.push(DetailPostPage,obj);
     };
 
     let map = new BMap.Map(this.mapElement.nativeElement,{enableMapClick:false,minZoom:8,maxZoom:20});
@@ -63,10 +63,20 @@ export class EmotionPage {
         map.panTo(r.point);
 
         // todo get the imgsrc, abbreviation_txt, txt from server.
-        let txt = "No pain, No gain. That's the truth.";
-        loadOverlay(r.point,"imgs/img0.jpeg", txt);
-        let _txt = "No pain, No gain. That's the fake.";
-        loadOverlay(new BMap.Point(r.point.lng - 0.0005,r.point.lat - 0.0005),"imgs/img0.jpeg", _txt);
+        page.dataService.getPostsByRange(r.point.lat, r.point.lng, 500).subscribe(
+          res => {
+            console.log(res.json());
+            let list = res.json();
+            let i: number = 0;
+            for(i=1; i<list.length;i++){
+              console.log(list[i].text);
+              loadOverlay(list[i].postID, new BMap.Point(list[i].longitude,list[i].latitude),"http://emotion-soa.site:8080/emotion-server"+list[i].imagePath, list[i].text);
+            }
+          });
+        // let txt = "No pain, No gain. That's the truth.";
+        // loadOverlay(r.point,"imgs/img0.jpeg", txt);
+        // let _txt = "No pain, No gain. That's the fake.";
+        // loadOverlay(new BMap.Point(r.point.lng - 0.0005,r.point.lat - 0.0005),"imgs/img0.jpeg", _txt);
 
         map.centerAndZoom(r.point,17);
         map.enableScrollWheelZoom(true);     //开启鼠标滚轮缩放
@@ -76,9 +86,10 @@ export class EmotionPage {
       }
     },{enableHighAccuracy: true});
 
-    function loadOverlay(point, imgsrc, text) {
+    function loadOverlay(postID, point, imgsrc, text) {
       // Construct this layer with the info
       function MotionOverlay(point) {
+        this._postID = postID;
         this._point = point;
         this._imgsrc = imgsrc;
         this._text = text;
@@ -113,7 +124,8 @@ export class EmotionPage {
       }
 
       // Set the information of the show div
-      function setInfo(imgsrc, text, locationstr){
+      function setInfo(id, imgsrc, text, locationstr){
+        divCtrl._postID = id;
         divCtrl._img.setAttribute("src", imgsrc);
         divCtrl._div.getElementsByTagName("span")[0].innerHTML = locationstr;
         divCtrl._div.getElementsByTagName("span")[1].innerHTML = text;
@@ -155,7 +167,7 @@ export class EmotionPage {
             geoc.getLocation(point, function(rs){
               let addComp = rs.addressComponents;
               let address = addComp.province + ", " + addComp.city + ", " + addComp.district + ", " + addComp.street + ", " + addComp.streetNumber;
-              setInfo(that._imgsrc, that._text, address);
+              setInfo(that._postID, that._imgsrc, that._text, address);
               divCtrl.show();
             });
           }
@@ -271,13 +283,20 @@ export class EmotionPage {
           span.style.margin = "0";
           span.style.width = "100%";
           span.style.height = "88%";
-          span.style.display = "balertlock";
+          span.style.display = "block";
         }
         subdiv.appendChild(span);
 
+        let pane = this;
         div.onclick = function(e){
-          // todo showdetail
-          _showdetail();
+          let obj = {
+            imagePath:pane._img.getAttribute("src"),
+            postID:pane._postID,
+            text:pane._div.getElementsByTagName("span")[1].innerHTML,
+            address: pane._div.getElementsByTagName("span")[0].innerHTML
+          };
+          // console.log(obj);
+          _showdetail(obj);
           let e_ = window.event || e;
           if (e_.stopPropagation) {
             e_.stopPropagation();

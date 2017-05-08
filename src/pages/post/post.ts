@@ -20,8 +20,9 @@ export class PostPage {
   }
 
   post() {
-    //TODO:
-    this.dataService.addPost("add-post-test", "/image/0.png", 23.123, 32.321).subscribe(res => {
+    // Post ...
+    // Success.
+    this.dataService.addPost("add-post-test", "/image/0.png", 31.194, 121.59).subscribe(res => {
       console.log(res.json());
       this.toastCtrl.create({message: 'Check console\'s log\n',
         duration: 3000, position: 'middle'}).present();
