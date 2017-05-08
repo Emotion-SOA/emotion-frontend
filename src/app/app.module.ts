@@ -12,8 +12,6 @@ import {RegisterPage} from "../pages/register/register";
 import {EmotionPage} from "../pages/emotion/emotion";
 import {PostPage} from "../pages/post/post";
 import {TracksPage} from "../pages/tracks/tracks";
-import {VisionService} from "./services/vision.service";
-import {NlpService} from "./services/nlp.service";
 import {StatusBar} from "@ionic-native/status-bar";
 import {SplashScreen} from "@ionic-native/splash-screen";
 import {Camera} from "@ionic-native/camera";
@@ -56,8 +54,6 @@ import {File} from "@ionic-native/file";
   providers: [
     StatusBar,
     SplashScreen,
-    VisionService,
-    NlpService,
     File,
     Transfer,
     Camera,

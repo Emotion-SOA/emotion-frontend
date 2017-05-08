@@ -1,20 +1,22 @@
 import {Component} from "@angular/core";
-import {NavController, NavParams, ToastController} from "ionic-angular";
+import {NavController, ToastController} from "ionic-angular";
 import {RegisterPage} from "../register/register";
 import {EmotionPage} from "../emotion/emotion";
 import {DataService} from "../../app/services/data.service";
-import {Http} from '@angular/http';
 
 
 @Component({
   selector: 'page-login',
-  templateUrl: 'login.html'
+  templateUrl: 'login.html',
 })
 export class LoginPage {
   email: string;
   password: string;
+  user: {token: string, userID: Number};
 
-  constructor(public toastCtrl: ToastController, public navParams: NavParams, public navCtrl: NavController, private dataService: DataService, private http: Http) {
+  constructor(public toastCtrl: ToastController,
+              public navCtrl: NavController,
+              private dataService: DataService) {
   }
 
   openPage(page: string) {
@@ -23,8 +25,10 @@ export class LoginPage {
       let result = this.dataService.login(this.email, this.password);
       result.subscribe(res => {
         if (res.json().error) {
-          this.toastCtrl.create({message: 'Login failed.', 
-            duration: 3000, position: 'middle'}).present();
+          this.toastCtrl.create({
+            message: 'Login failed.',
+            duration: 3000, position: 'middle'
+          }).present();
         } else {
           this.navCtrl.setRoot(EmotionPage);
         }
