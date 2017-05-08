@@ -1,6 +1,8 @@
 page-login {
   .bg{
-    background: url('../imgs/bg.png') no-repeat center center fixed;
+    //background: url('../imgs/bg.png') no-repeat center center fixed;
+    background: url('../imgs/sky.jpg') no-repeat center center fixed;
+
     background-size: cover;
   }
 
@@ -15,5 +17,8 @@ page-login {
 
   .item.item-input {
     background-color: transparent;
+  }
+  .item-md{
+    color: #f9f9f9;
   }
 }

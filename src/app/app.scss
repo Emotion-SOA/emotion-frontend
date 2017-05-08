@@ -18,7 +18,8 @@
 //$menu-md-background: '../../www/imgs/menu.jpg';
 
 .menu-bg{
-  background-color: #82bcfd;
+  //background-color: #82bcfd;
+  background-color: #3b437c;
 }
 
 .logout {
@@ -26,9 +27,19 @@
 }
 
 .toolbar-background {
-  background-color: color($colors, primary);
+  //background-color: color($colors, primary);
+  background-color: #3b437c;
 }
 
 .mynavbar {
   color: color($colors, light);
+}
+.toolbar-title-md{
+  color: #f9f9f9;
+}
+.label-md{
+  color: #f9f9f9;
+}
+.item-md{
+  background-color: #3b437c;
 }
