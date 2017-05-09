@@ -11,9 +11,10 @@ export class DataService {
   constructor(private http: Http) {
     console.log('DataService Initialized...');
     this.urlPrefix = "http://emotion-soa.site:8080/emotion-server/api";
-    this.getPostsByRange(121, 31, 100000.0).map(res => res.json())
+    this.getPostsByRange(31, 121, 100000.0).map(res => res.json())
       .subscribe(posts => {
         this.allPosts = posts;
+        console.log("In DataService\n" + this.allPosts);
     });
   }
 
@@ -60,7 +61,7 @@ export class DataService {
   }
 
   getWordCloud(text: string) {
-    return this.http.get(this.urlPrefix + "/word-cloud?text=" + text);
+    return this.http.post("http://lifengshuang.website:8080/emotion-server/word-cloud", {"text": text});
   }
 }
 

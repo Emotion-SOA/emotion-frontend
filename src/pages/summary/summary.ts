@@ -30,11 +30,12 @@ export class SummaryPage {
     console.log("In SummaryPage constructor: all text (after filter)= \n" + this.text);
 
     let page = this;
-    let isCallCloud = false;// set as true when presentation.
-    page.cloudImgSrc = "https://www.teamtempapp.com/wc/89c1d5d5-f680-44ff-b1de-90706cfa4bd9.png";
+    let isCallCloud = true;//TODO: set as true when presentation.
+    page.cloudImgSrc = "imgs/word.png";
     if(isCallCloud) {
       this.dataService.getWordCloud(this.text).map(res => res.json()).subscribe(obj => {
         let url = obj.url;
+        console.log(url);
         if (url) {
           page.cloudImgSrc = url;
         }

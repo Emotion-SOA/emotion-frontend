@@ -83,10 +83,12 @@ export class EmotionPage {
         // todo get the imgsrc, abbreviation_txt, txt from server.
         page.dataService.getPostsByRange(r.point.lat, r.point.lng, 500).subscribe(
           res => {
-            console.log(res.json());
+            // console.log(res.json());
             let list = res.json();
+            // console.log("Paint in emotion");
+            // console.log(list);
             let i: number = 0;
-            for(i=1; i<list.length;i++){
+            for(i; i<list.length;i++){
               console.log(list[i].text);
               loadOverlay(list[i].postID, new BMap.Point(list[i].longitude,list[i].latitude),"http://emotion-soa.site:8080/emotion-server"+list[i].imagePath, list[i].text);
             }

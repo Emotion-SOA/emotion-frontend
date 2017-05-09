@@ -19,7 +19,7 @@ export class DetailPostPage {
     private dataService: DataService
   ) {
     this.post =
-      {icon: "imgs/img0.jpeg",
+      {icon: "imgs/logo.jpeg",
         img: this.params.get("imagePath"),
         text: this.params.get("text"),
         location: this.params.get("address"),
